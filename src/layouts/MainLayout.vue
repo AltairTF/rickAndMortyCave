@@ -42,11 +42,6 @@ const linksList = [
     icon: "school",
     link: "/",
   },
-  {
-    title: "Episodes",
-    icon: "school",
-    link: "/episodes",
-  },
 ];
 
 import { defineComponent, ref } from "vue";

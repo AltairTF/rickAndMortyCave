@@ -12,6 +12,15 @@
           {{ characters.name }}
         </q-item-section>
       </q-item>
+      <q-btn
+        color="primary"
+        v-if="this.prev > 0"
+        @click="charactersRequest(this.prev)"
+        >Previous Page</q-btn
+      >
+      <q-btn color="primary" @click="charactersRequest(this.next)"
+        >Next Page</q-btn
+      >
     </q-list>
   </q-page>
 </template>
@@ -26,6 +35,8 @@ export default defineComponent({
   data() {
     return {
       charactersName: [],
+      next: 0,
+      prev: 0,
     };
   },
 
@@ -38,28 +49,69 @@ export default defineComponent({
         params: { userId },
       });
     },
+    charactersRequest(page) {
+      axios
+        .post(
+          "https://rickandmortyapi.com/graphql",
+          {
+            query: `query SearchCharacters($page: Int) {
+            characters(page: $page) {
+              results{
+                id
+                name
+              }
+              info{
+                next
+                prev
+              }
+            }
+          }`,
+            variables: {
+              page: page,
+            },
+          },
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        )
+        .then((res) => {
+          const query = res.data;
+          console.log(query.data.characters.info.next);
+          this.charactersName = query.data.characters.results;
+          this.next = query.data.characters.info.next;
+          this.prev = query.data.characters.info.prev;
+        });
+    },
   },
 
   created() {
-    axios({
-      url: "https://rickandmortyapi.com/graphql",
-      method: "post",
-      data: {
-        query: `
-          {
-            characters {
-              results {
-                name
-                id
-              }
-            }
-          }
-        `,
-      },
-    }).then((response) => {
-      const query = response.data;
-      this.charactersName = query.data.characters.results;
-    });
+    this.charactersRequest();
+    // axios({
+    //   url: "https://rickandmortyapi.com/graphql",
+    //   method: "post",
+    //   data: {
+    //     query: `
+    //       {
+    //         characters {
+    //           results {
+    //             name
+    //             id
+    //           }
+    //           info{
+    //             next
+    //             prev
+    //           }
+    //         }
+    //       }
+    //     `,
+    //   },
+    // }).then((response) => {
+    //   const query = response.data;
+    //   console.log(query.data.characters.info.next);
+    //   this.charactersName = query.data.characters.results;
+    // });
   },
 });
 </script>

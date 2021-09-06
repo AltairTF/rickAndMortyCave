@@ -7,7 +7,7 @@ const routes = [
       {path: '', redirect: '/characters'},
       { path: '/characters', component: () => import('pages/Characters.vue') },
       { path: '/character', name: 'characterPage', component: () => import('pages/Character.vue') },
-      { path: '/episodes', name: 'episodePage', component: () => import('pages/Episodes.vue') },
+      { path: '/episode', name: 'episodePage', component: () => import('src/pages/Episode.vue') },
     ]
   },
 
