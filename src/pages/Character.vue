@@ -78,7 +78,6 @@ export default defineComponent({
         }
       )
       .then((res) => {
-        console.log(res.data.data.character);
         this.characterInfo = res.data.data.character;
         this.episodes = res.data.data.character.episode;
       });
