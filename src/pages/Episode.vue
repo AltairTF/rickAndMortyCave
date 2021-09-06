@@ -33,7 +33,6 @@ export default defineComponent({
   methods: {
     retrieving(id) {
       const userId = id;
-      console.log("USERID", userId);
       this.$router.push({
         name: "characterPage",
         params: { userId },
@@ -67,7 +66,6 @@ export default defineComponent({
         }
       )
       .then((res) => {
-        console.log(res.data.data);
         this.episodeInfo = res.data.data.episode;
         this.characters = res.data.data.episode.characters;
       });
