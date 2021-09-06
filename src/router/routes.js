@@ -4,8 +4,10 @@ const routes = [
     path: '/',
     component: () => import('layouts/MainLayout.vue'),
     children: [
-      { path: '', component: () => import('pages/Characters.vue') },
-      { path: '/episodes', component: () => import('pages/Episodes.vue') },
+      {path: '', redirect: '/characters'},
+      { path: '/characters', component: () => import('pages/Characters.vue') },
+      { path: '/character', name: 'characterPage', component: () => import('pages/Character.vue') },
+      { path: '/episodes', name: 'episodePage', component: () => import('pages/Episodes.vue') },
     ]
   },
 

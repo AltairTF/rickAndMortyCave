@@ -6,6 +6,7 @@
         v-ripple
         v-for="characters in charactersName"
         :key="characters"
+        @click="retrieving(characters.id)"
       >
         <q-item-section>
           {{ characters.name }}
@@ -28,6 +29,17 @@ export default defineComponent({
     };
   },
 
+  methods: {
+    retrieving(id) {
+      const userId = id;
+      console.log("USERID", userId);
+      this.$router.push({
+        name: "characterPage",
+        params: { userId },
+      });
+    },
+  },
+
   created() {
     axios({
       url: "https://rickandmortyapi.com/graphql",
@@ -38,6 +50,7 @@ export default defineComponent({
             characters {
               results {
                 name
+                id
               }
             }
           }
