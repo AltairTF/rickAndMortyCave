@@ -66,3 +66,9 @@ export default defineComponent({
   },
 });
 </script>
+
+<style>
+body.body--dark {
+  background: #000;
+}
+</style>
