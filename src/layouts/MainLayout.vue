@@ -38,8 +38,8 @@ import EssentialLink from "components/EssentialLink.vue";
 
 const linksList = [
   {
-    title: "Characters",
-    icon: "school",
+    title: "Characters List",
+    icon: "mood",
     link: "/",
   },
 ];
