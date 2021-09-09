@@ -1,7 +1,7 @@
 <template>
   <q-page class="flex flex-center" v-if="characterInfo.name">
-    <div class="row flex-center" bordered>
-      <div class="col-xs-10 col-sm-6 col-md-auto my-info-card self-start">
+    <div class="row flex-center space-around" bordered>
+      <InfoCard>
         <q-img
           class="my-character-image"
           :src="characterInfo.image"
@@ -38,24 +38,28 @@
             {{ location.name }}
           </p>
         </div>
-      </div>
-      <div class="col-xs-10 col-sm-6 col-md-auto my-info-card">
+      </InfoCard>
+      <InfoCard>
         <q-list dense padding class="rounded-borders">
           <p class="text-subtitle2">Episodes {{ characterInfo.name }} is in</p>
-          <q-item
-            clickable
-            v-ripple
-            v-for="x in episodes"
-            :key="x"
-            @click="retrieving(x.id)"
-          >
-            <q-item-section class="text-subtitle2">{{
-              x.episode
-            }}</q-item-section>
-            <q-item-section>{{ x.name }}</q-item-section>
-          </q-item>
+          <!-- <q-scroll-area> -->
+          <div style="max-height: 38vh" class="scroll">
+            <q-item
+              clickable
+              v-ripple
+              v-for="x in episodes"
+              :key="x"
+              @click="retrieving(x.id)"
+            >
+              <q-item-section class="text-subtitle2">{{
+                x.episode
+              }}</q-item-section>
+              <q-item-section>{{ x.name }}</q-item-section>
+            </q-item>
+          </div>
+          <!-- </q-scroll-area> -->
         </q-list>
-      </div>
+      </InfoCard>
     </div>
   </q-page>
 </template>
@@ -65,6 +69,7 @@ import axios from "axios";
 import { defineComponent } from "vue";
 import { SessionStorage } from "quasar";
 import { Loading } from "quasar";
+import InfoCard from "components/InfoCard.vue";
 
 export default defineComponent({
   name: "Character",
@@ -77,6 +82,10 @@ export default defineComponent({
       episodes: [],
       id: this.$route.params.userId,
     };
+  },
+
+  components: {
+    InfoCard,
   },
 
   methods: {
