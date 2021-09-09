@@ -161,12 +161,15 @@ export default defineComponent({
   border-radius: 10px
   border: 2px solid $dark
   height: 100%
+  min-width: 250px
 .my-character-image
   margin: 0 0 2vh 0
   border: 2px solid $dark
   border-radius: 50%
-  height: 40%
-  max-width: 40%
+  min-width: 100px
+  min-height: 100px
+  max-width: 50%
+  max-height: 50%
 .my-font
   font-family: 'customfont'
   color: $primary
