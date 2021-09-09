@@ -1,6 +1,8 @@
 <template>
   <q-page class="flex flex-center column">
-    <h4 class="my-font">Rick and Morty Character List</h4>
+    <div class="q-pa-sm">
+      <h4 class="my-font text-center">Rick and Morty Character List</h4>
+    </div>
     <q-list dense bordered padding class="my-list">
       <q-input
         color="dark"
@@ -74,22 +76,25 @@ export default defineComponent({
       next: 0,
       prev: 0,
       filter: "",
-      pages: 0,
+      pages: 0
     };
   },
 
   methods: {
+    scrollHanle(evt) {
+      console.log(evt);
+    },
     retrieving(id) {
       const userId = id;
       this.$router.push({
         name: "characterPage",
-        params: { userId },
+        params: { userId }
       });
     },
     charactersRequest(page, filter) {
       Loading.show({
         delay: 500,
-        message: "Please wait...",
+        message: "Please wait..."
       });
       axios
         .post(
@@ -111,16 +116,16 @@ export default defineComponent({
           }`,
             variables: {
               page: page,
-              name: filter,
-            },
+              name: filter
+            }
           },
           {
             headers: {
-              "Content-Type": "application/json",
-            },
+              "Content-Type": "application/json"
+            }
           }
         )
-        .then((res) => {
+        .then(res => {
           Loading.hide();
           const query = res.data.data.characters;
           this.charactersName = query.results;
@@ -129,20 +134,20 @@ export default defineComponent({
           this.imageURL = query.results.image;
           this.pages = query.info.pages;
         })
-        .catch(function (error) {
+        .catch(function(error) {
           console.log(error);
           Notify.create({
             type: "negative",
             timeout: 600,
-            message: "Character Not Found",
+            message: "Character Not Found"
           });
         });
-    },
+    }
   },
 
   created() {
     this.charactersRequest();
-  },
+  }
 });
 </script>
 

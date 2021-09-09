@@ -1,7 +1,7 @@
 <template>
   <q-page class="flex flex-center" v-if="characterInfo.name">
-    <div class="row" bordered>
-      <div class="col my-info-card">
+    <div class="row flex-center" bordered>
+      <div class="col-xs-10 col-sm-6 col-md-auto my-info-card self-start">
         <q-img
           class="my-character-image"
           :src="characterInfo.image"
@@ -39,7 +39,7 @@
           </p>
         </div>
       </div>
-      <div class="col my-info-card">
+      <div class="col-xs-10 col-sm-6 col-md-auto my-info-card">
         <q-list dense padding class="rounded-borders">
           <p class="text-subtitle2">Episodes {{ characterInfo.name }} is in</p>
           <q-item
@@ -90,14 +90,14 @@ export default defineComponent({
   },
 
   mounted() {
-    if (SessionStorage.id == undefined) {
-      SessionStorage.set("id", this.id);
+    if (SessionStorage.character_id == undefined) {
+      SessionStorage.set("character_id", this.id);
     }
   },
 
   created() {
-    if (SessionStorage.id == this.id) {
-      this.id = SessionStorage.getItem("id");
+    if (SessionStorage.character_id == this.id) {
+      this.id = SessionStorage.getItem("character_id");
     }
     Loading.show({
       delay: 500,
@@ -115,14 +115,10 @@ export default defineComponent({
             type
             gender
             origin {
-              name
-              type
-              dimension
+              name         
             }
             location {
               name
-              type
-              dimension
             }
             image
             episode{
