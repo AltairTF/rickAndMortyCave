@@ -2,20 +2,29 @@
   <q-layout view="lHh Lpr lFf">
     <q-header elevated>
       <q-toolbar>
-        <q-btn
+        <!-- <q-btn
           flat
           dense
           round
           icon="menu"
           aria-label="Menu"
           @click="toggleLeftDrawer"
-        />
+        /> -->
 
-        <q-toolbar-title> Rick and Morty Cave </q-toolbar-title>
+        <q-toolbar-title>
+          <a href="/" style="text-decoration: none; color: black"
+            >Rick and Morty Cave</a
+          >
+        </q-toolbar-title>
       </q-toolbar>
     </q-header>
 
-    <q-drawer v-model="leftDrawerOpen" show-if-above bordered>
+    <!-- <q-drawer
+      style="background-color: #97ce4c"
+      v-model="leftDrawerOpen"
+      show-if-above
+      bordered
+    >
       <q-list>
         <q-item-label header> Navigation </q-item-label>
 
@@ -25,21 +34,21 @@
           v-bind="link"
         />
       </q-list>
-    </q-drawer>
+    </q-drawer> -->
 
-    <q-page-container>
+    <q-page-container class="my-page-container">
       <router-view />
     </q-page-container>
   </q-layout>
 </template>
 
 <script>
-import EssentialLink from "components/EssentialLink.vue";
+// import EssentialLink from "components/EssentialLink.vue";
 
 const linksList = [
   {
-    title: "Characters",
-    icon: "school",
+    title: "Characters List",
+    icon: "mood",
     link: "/",
   },
 ];
@@ -49,9 +58,9 @@ import { defineComponent, ref } from "vue";
 export default defineComponent({
   name: "MainLayout",
 
-  components: {
-    EssentialLink,
-  },
+  // components: {
+  //   EssentialLink,
+  // },
 
   setup() {
     const leftDrawerOpen = ref(false);
@@ -67,8 +76,18 @@ export default defineComponent({
 });
 </script>
 
-<style>
-body.body--dark {
-  background: #000;
-}
+<style lang="sass" scoped>
+.my-drawer
+  background-color: red
+.my-page-container
+  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab)
+  background-size: 400% 400%
+  animation: gradient 15s ease infinite
+  @keyframes gradient
+    0%
+      background-position: 0% 50%
+    50%
+      background-position: 100% 50%
+    100%
+      background-position: 0% 50%
 </style>
