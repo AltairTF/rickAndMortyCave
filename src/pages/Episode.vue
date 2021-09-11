@@ -27,7 +27,6 @@
       <InfoCard>
         <q-list dense padding class="rounded-borders">
           <p class="text-subtitle2">Characters in {{ episodeInfo.name }}</p>
-          <!-- <q-scroll-area style="height: 250px; width: auto"> -->
           <div style="max-height: 37vh" class="scroll">
             <q-item
               clickable
@@ -36,28 +35,16 @@
               :key="x"
               @click="retrieving(x.id)"
             >
+              <q-item-section avatar>
+                <q-img class="my-avatar" :src="x.image" spinner-color="white" />
+              </q-item-section>
               <q-item-section>{{ x.name }}</q-item-section>
             </q-item>
           </div>
-          <!-- </q-scroll-area> -->
         </q-list>
       </InfoCard>
     </div>
   </q-page>
-  <!-- <q-page class="flex flex-center">
-    <q-list dense bordered padding class="rounded-borders">
-      <q-item>{{ episodeInfo.name }}</q-item>
-      <q-item
-        clickable
-        v-ripple
-        v-for="x in characters"
-        :key="x"
-        @click="retrieving(x.id)"
-      >
-        <q-item-section>{{ x.name }}</q-item-section>
-      </q-item>
-    </q-list>
-  </q-page> -->
 </template>
 
 <script>
@@ -119,6 +106,7 @@ export default defineComponent({
               characters{
                 id
                 name
+                image
               }
             }
           }`,
@@ -144,4 +132,10 @@ export default defineComponent({
 });
 </script>
 
-<style lang="sass" scoped></style>
+<style lang="sass" scoped>
+.my-avatar
+  border: 1px outset $dark
+  border-radius: 25%
+  height: 45px
+  max-width: 45px
+</style>

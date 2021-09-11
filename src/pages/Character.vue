@@ -42,7 +42,6 @@
       <InfoCard>
         <q-list dense padding class="rounded-borders">
           <p class="text-subtitle2">Episodes {{ characterInfo.name }} is in</p>
-          <!-- <q-scroll-area> -->
           <div style="max-height: 38vh" class="scroll">
             <q-item
               clickable
@@ -57,7 +56,6 @@
               <q-item-section>{{ x.name }}</q-item-section>
             </q-item>
           </div>
-          <!-- </q-scroll-area> -->
         </q-list>
       </InfoCard>
     </div>
