@@ -22,5 +22,6 @@ yarn run lint
 quasar build
 ```
 
-### Customize the configuration
-See [Configuring quasar.conf.js](https://v2.quasar.dev/quasar-cli/quasar-conf-js).
+### Running app in Vercel
+
+https://rickandmortycave.vercel.app/
